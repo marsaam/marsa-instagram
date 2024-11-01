@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 
-    public $profile = [
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'username' => 'required|string|max:255|unique:users',
-        'password' => 'required|string|min:8|confirmed',
+    public $user = [
+        'name' => 'nullable|string|max:255',
+        'email' => 'nullable|string|email|max:255|unique:users',
+        'username' => 'nullable|string|max:255',
+        'password' => 'nullable|string|min:8',
         'avatar' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
     ];
 
@@ -27,10 +27,37 @@ class ProfileController extends Controller
         'caption' => 'nullable|string'
     ];
 
-    public function addProfile(Request $request)
+    public function register(Request $request)
     {
-        $validated_bio =  $request->validate($this->bio);
+        $validated_user = $request->validate($this->user);
+        User::create($validated_user);
+
+        return redirect()->to('dashboard');
+    }
+
+    public function detailProfile($id)
+    {
+        $users = User::findOrFail($id);
+        return view('profile', compact('users'));
+    }
+
+    public function editProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $validated_user = $request->validate($this->user);
+        $validated_bio = $request->validate($this->bio);
+
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('uploads', $filename, 'public');
+            $validated_user['avatar'] = $path;
+        }
+        $user->update($validated_user);
+
         Bio::create($validated_bio);
+
+        return redirect()->to('dashboard');
     }
 
     public function addPost(Request $request)
@@ -87,5 +114,10 @@ class ProfileController extends Controller
     {
         $posts = Post::all();
         return view('post.archive', compact('posts'));
+    }
+
+    public function welcome()
+    {
+        return view('welcome');
     }
 }
