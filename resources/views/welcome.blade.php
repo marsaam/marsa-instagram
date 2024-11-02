@@ -16,19 +16,19 @@
             @csrf
             <div class="form-group">
                 <label for="name">Nama Lengkap</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan nama lengkap">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan nama lengkap" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email" required>
             </div>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan username">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan username" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password" required>
             </div>
             <div class="form-group">
                 <label for="profile_photo">Foto Profil</label>

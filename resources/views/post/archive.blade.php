@@ -1,11 +1,12 @@
 @extends('layout.navbar')
 @section('content')
     <h2 class="text-center mb-4">Daftar Postingan</h2>
-    <button class="btn btn-submit">
-        <a href="">
-            <i class="bi bi-file-earmark-arrow-down">Download All</i>
-        </a>
-    </button>
+    <a href="{{ route('preview.pdf') }}">
+        <i class="bi bi-file-earmark-arrow-down">Download PDF</i>
+    </a>
+    <a href="{{ route('posts.xls') }}">
+        <i class="bi bi-file-earmark-arrow-down">Download SLX</i>
+    </a>
     <table class="table table-bordered table-hover">
         <thead class="thead-dark">
             <tr>
@@ -13,7 +14,6 @@
                 <th scope="col">Date</th>
                 <th scope="col">Photo</th>
                 <th scope="col">Caption</th>
-                <th scope="col">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +21,6 @@
                 <tr>
                     <td> {{ $loop->index + 1 }}</td>
                     <td>{{ $post->created_at->format('Y-m-d H:i:s') }}</td>
-                    {{-- <td><img src="{{ asset('storage/' . $post->photo) }}" alt="Photo 1" width="50"></td> --}}
                     <td>
                         @if (in_array(pathinfo($post->photo, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
                             <img src="{{ asset('storage/' . $post->photo) }}" alt="Photo" width="50">
@@ -36,11 +35,6 @@
                         @endif
                     </td>
                     <td>{{ $post->caption }}</td>
-                    <td>
-                        <a href="">
-                            <i class="bi bi-file-earmark-arrow-down"></i>
-                        </a>
-                    </td>
                 </tr>
             @endforeach
         </tbody>

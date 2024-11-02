@@ -1,7 +1,7 @@
 @extends('layout.navbar')
 @section('content')
     <div class="row">
-
+        {{-- {{ auth()->user()->username }} --}}
         @foreach ($users as $user)
             <div class="col-md-4">
                 @if ($user->avatar)
@@ -32,7 +32,7 @@
     </div>
 
     <div class="row mt-5">
-        @foreach ($posts as $post)
+        @forelse ($posts as $post)
             <div class="col-md-4 mb-4">
                 <a href="{{ route('detail.post', $post->id) }}">
                     @if (in_array(pathinfo($post->photo, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
@@ -51,6 +51,10 @@
                     @endif
                 </a>
             </div>
-        @endforeach
+        @empty
+            <div class="col-12 text-center">
+                <p>Belum ada postingan</p>
+            </div>
+        @endforelse
     </div>
 @endsection

@@ -32,7 +32,14 @@ Route::put('/detail/post/{id}', [ProfileController::class, 'editPost'])->name('e
 
 Route::get('/', [ProfileController::class, 'welcome'])->name('welcome');
 Route::post('/', [ProfileController::class, 'register'])->name('register');
+Route::get('/login', [ProfileController::class, 'login'])->name('login');
+Route::post('/login', [ProfileController::class, 'authenticate'])->name('auth');
 
 
 Route::get('/detail/profile/{id}', [ProfileController::class, 'detailProfile'])->name('detail.profile');
 Route::put('/detail/profile/{id}', [ProfileController::class, 'editProfile'])->name('edit.profile');
+
+Route::get('/preview-pdf', [ProfileController::class, 'preview'])->name('preview.pdf');
+Route::get('/download-posts-xls', [ProfileController::class, 'downloadXLS'])->name('posts.xls');
+
+// Route::get('/preview-filter', [ProfileController::class, 'filter'])->name('filter.post');

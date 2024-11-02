@@ -7,6 +7,7 @@
         @if (isset($detailPosts))
             @method('PUT')
         @endif
+        <input type="hidden" name="user_id" value={{Auth::id()}}>
         <div class="mb-3">
             <label for="photo" class="form-label">Pilih Foto</label>
             <input type="file" class="form-control" name="photo" id="photo" accept="image/*,video/*"
