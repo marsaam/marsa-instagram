@@ -27,15 +27,15 @@ class UsersSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            // [
-            //     'name' => 'Jane Doe',
-            //     'email' => 'janedoe@example.com',
-            //     'username' => 'janedoe',
-            //     'avatar' => '1.png',
-            //     'password' => Hash::make('password456'),
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ]
+            [
+                'name' => 'Jane Doe',
+                'email' => 'janedoe@example.com',
+                'username' => 'janedoe',
+                'avatar' => '1.png',
+                'password' => Hash::make('password456'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
         ]);
     }
 }

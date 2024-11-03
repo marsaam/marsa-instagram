@@ -15,10 +15,15 @@ class BiosSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('bios')->insert([
-        //     [
-        //         'bio' => '"To anyone that ever told you you aue no good... they are no better." — Hayley Williams',
-        //     ],
-        // ]);
+        DB::table('bios')->insert([
+            [
+                'user_id' => '1',
+                'bio' => '"To anyone that ever told you you aue no good... they are no better." — Hayley Williams',
+            ],
+            [
+                'user_id' => '2',
+                'bio' => '"To anyone that ever told you you aue no good... they are no better." — Hayley Williams',
+            ],
+        ]);
     }
 }
